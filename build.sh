@@ -1,3 +1,10 @@
 #!/usr/bin/env bash
 
-docker build -t gpac:latest .
+if [[ -z "$GPAC_VERSION" ]]; then
+	GPAC_VERSION=2.0.0
+fi
+
+docker build \
+  -t "niktheblak/gpac:$GPAC_VERSION" \
+  -t niktheblak/gpac:latest \
+  .
