@@ -3,9 +3,10 @@ FROM ubuntu:latest
 ARG GPAC_VERSION=2.4.0
 ENV GPAC_VERSION=${GPAC_VERSION}
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update \
-    && apt-get install -y build-essential pkg-config g++ git cmake yasm zlib1g-dev \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build-essential pkg-config g++ git cmake yasm zlib1g-dev \
+    && rm -r /var/cache/apt \
+    && rm -r /var/lib/apt/lists
 
 ADD https://github.com/gpac/gpac/archive/refs/tags/v${GPAC_VERSION}.tar.gz /root/gpac.tar.gz
 
