@@ -17,7 +17,7 @@ RUN cd /root \
     && tar xzf ${GPAC_ARCHIVE} \
     && cd gpac-${GPAC_VERSION} \
     && ./configure --static-bin \
-    && make \
+    && make -j$(nproc) \
     && make install \
     && cd .. \
     && rm -r gpac-${GPAC_VERSION} \
